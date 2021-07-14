@@ -14,20 +14,12 @@ struct ContentView: View {
     
     var width = WKInterfaceDevice.current().screenBounds.size.width
     
-    let images : [UIImage]! = [
-        UIImage(named: "stick-1")!,
-        UIImage(named: "stick-2")!,
-        UIImage(named: "stick-3")!,
-        UIImage(named: "stick-4")!,
-        UIImage(named: "stick-5")!,
-        UIImage(named: "stick-6")!,
-        UIImage(named: "stick-7")!,
-        UIImage(named: "stick-8")!,
-        UIImage(named: "stick-9")!,
-        UIImage(named: "stick-10")!,
-    ]
-    
     @State var stickIndex: Int = 1;
+    @State var petalsY1: CGFloat = 0;
+    @State var petalsY2: CGFloat = -280;
+    @State var petalsY3: CGFloat = 0;
+    @State var petalsY4: CGFloat = -180;
+    
     
     
     
@@ -44,6 +36,29 @@ struct ContentView: View {
                 .scaleEffect(0.3)
                 .offset(y: -(width) / 4)
                 .rotationEffect(.init(degrees: currentTime.secAngle()))
+                .zIndex(2)
+            
+            Image("petals")
+                .offset(y: petalsY1)
+                .opacity(0.7)
+                .zIndex(3)
+            
+            Image("petals")
+                .offset(y: petalsY2)
+                .opacity(0.7)
+                .zIndex(3)
+            
+            Image("petals")
+                .scaleEffect(0.5)
+                .opacity(0.4)
+                .offset(y: petalsY3)
+                .zIndex(1)
+            
+            Image("petals")
+                .scaleEffect(0.5)
+                .opacity(0.4)
+                .offset(y: petalsY4)
+                .zIndex(1)
             
             // Seconds and Min dots
             
@@ -68,6 +83,7 @@ struct ContentView: View {
                 .frame(width: 2, height: (width - 70) / 2)
                 .offset(y: -(width - 90) / 4)
                 .rotationEffect(.init(degrees: currentTime.minAngle()))
+                .zIndex(2)
             
             // Hour hand
             Rectangle()
@@ -75,6 +91,7 @@ struct ContentView: View {
                 .frame(width: 2, height: (width - 100) / 2)
                 .offset(y: -(width - 120) / 4)
                 .rotationEffect(.init(degrees: currentTime.hrAngle()))
+                .zIndex(2)
             
             // Center Circle
             Circle()
@@ -96,6 +113,22 @@ struct ContentView: View {
         
         .onReceive(secondReceiver) { _ in
             self.stickIndex = (stickIndex + 1) % 77 + 1
+            self.petalsY1 += 2
+            self.petalsY2 += 2
+            self.petalsY3 += 1
+            self.petalsY4 += 1
+            if (petalsY1 > 280){
+                petalsY1 = -280
+            }
+            if (petalsY2 > 280){
+                petalsY2 = -280
+            }
+            if (petalsY3 > 180){
+                petalsY3 = -180
+            }
+            if (petalsY4 > 180){
+                petalsY4 = -180
+            }
         }
         
         
