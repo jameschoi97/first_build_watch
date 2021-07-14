@@ -9,9 +9,20 @@
         <!--Hosting Controller-->
         <scene sceneID="RUd-og-cv4">
             <objects>
-                <hostingController id="NBu-mt-KyX" customClass="HostingController" customModule="first_build_watch_WatchKit_App" customModuleProvider="target"/>
+                <hostingController id="NBu-mt-KyX" customClass="HostingController" customModule="first_build_watch_WatchKit_App" customModuleProvider="target">
+                    <connections>
+                        <segue destination="QtF-Gj-Heb" kind="relationship" relationship="nextPage" id="Dxp-Ci-SRP"/>
+                    </connections>
+                </hostingController>
             </objects>
             <point key="canvasLocation" x="187" y="141"/>
+        </scene>
+        <!--Watch2 Controller-->
+        <scene sceneID="YZ5-Ii-9ZQ">
+            <objects>
+                <hostingController id="QtF-Gj-Heb" customClass="Watch2Controller" customModule="first_build_watch_WatchKit_Extension"/>
+            </objects>
+            <point key="canvasLocation" x="474" y="141"/>
         </scene>
         <!--Static Notification Interface Controller-->
         <scene sceneID="AEw-b0-oYE">

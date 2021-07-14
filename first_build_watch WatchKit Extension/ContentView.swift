@@ -12,13 +12,23 @@ struct ContentView: View {
     @State var receiver = Timer.publish(every: 0.2, on: .current, in: .default).autoconnect()
     @State var secondReceiver = Timer.publish(every: 0.1, on: .current, in: .default).autoconnect()
     
+    @State var particleDirection: Double = 60
     var width = WKInterfaceDevice.current().screenBounds.size.width
+    var height = WKInterfaceDevice.current().screenBounds.size.height
     
-    @State var stickIndex: Int = 1;
-    @State var petalsY1: CGFloat = 0;
-    @State var petalsY2: CGFloat = -280;
-    @State var petalsY3: CGFloat = 0;
-    @State var petalsY4: CGFloat = -180;
+    var leftBound: CGFloat = -90
+    var rightBound: CGFloat = 90
+    var topBound: CGFloat = -80
+    var bottomBound: CGFloat = 110
+
+    
+    @State var stickIndex: Int = 1
+    @State var petalsY1: CGFloat = 0
+    @State var petalsY2: CGFloat = -340
+    @State var petalsY3: CGFloat = 0
+    @State var petalsY4: CGFloat = -160
+    @State var particleX: CGFloat = 0
+    @State var particleY: CGFloat = 0
     
     
     
@@ -29,8 +39,8 @@ struct ContentView: View {
             
             
             // Main clock
-            Circle()
-                .fill(Color(.white))
+            Rectangle()
+                .fill(Color(.black))
         
             Image("stick-\(stickIndex)")
                 .scaleEffect(0.3)
@@ -40,25 +50,39 @@ struct ContentView: View {
             
             Image("petals")
                 .offset(y: petalsY1)
-                .opacity(0.7)
+                .scaleEffect(0.6)
+                .opacity(0.6)
                 .zIndex(3)
-            
+
             Image("petals")
                 .offset(y: petalsY2)
-                .opacity(0.7)
+                .opacity(0.6)
+                .scaleEffect(0.6)
                 .zIndex(3)
-            
+
             Image("petals")
-                .scaleEffect(0.5)
-                .opacity(0.4)
+                .rotationEffect(.init(degrees:180))
+                .scaleEffect(0.4)
+                .opacity(0.15)
                 .offset(y: petalsY3)
                 .zIndex(1)
-            
+                
+
             Image("petals")
-                .scaleEffect(0.5)
-                .opacity(0.4)
+                .rotationEffect(.init(degrees:180))
+                .scaleEffect(0.4)
+                .opacity(0.15)
                 .offset(y: petalsY4)
                 .zIndex(1)
+            
+            Image("particle")
+                .scaleEffect(0.1)
+                .zIndex(4)
+                .offset(x: particleX, y: particleY)
+                
+
+            
+            
             
             // Seconds and Min dots
             
@@ -113,27 +137,48 @@ struct ContentView: View {
         
         .onReceive(secondReceiver) { _ in
             self.stickIndex = (stickIndex + 1) % 77 + 1
-            self.petalsY1 += 2
-            self.petalsY2 += 2
-            self.petalsY3 += 1
-            self.petalsY4 += 1
-            if (petalsY1 > 280){
-                petalsY1 = -280
+            self.petalsY1 += 5
+            self.petalsY2 += 5
+            self.petalsY3 += 2
+            self.petalsY4 += 2
+            if (petalsY1 > 340){
+                petalsY1 = -340
             }
-            if (petalsY2 > 280){
-                petalsY2 = -280
+            if (petalsY2 > 340){
+                petalsY2 = -340
             }
-            if (petalsY3 > 180){
-                petalsY3 = -180
+            if (petalsY3 > 160){
+                petalsY3 = -160
             }
-            if (petalsY4 > 180){
-                petalsY4 = -180
+            if (petalsY4 > 160){
+                petalsY4 = -160
             }
+            
+            self.particleX += CGFloat(5 * cos(particleDirection * Double.pi / 180))
+            self.particleY += CGFloat(5 * sin(particleDirection * Double.pi / 180))
+            
+            if (particleX < leftBound){
+                particleX = leftBound
+                self.particleDirection = Double.random(in: -90.0 ..< 90.0)
+            }
+            if (particleX > rightBound){
+                particleX = rightBound
+                self.particleDirection = Double.random(in: 90.0 ..< 270.0)
+            }
+            if (particleY < topBound){
+                particleY = topBound
+                self.particleDirection = Double.random(in: 0 ..< 180)
+            }
+            if (particleY > bottomBound){
+                particleY = bottomBound
+                self.particleDirection = Double.random(in: 180 ..< 360)
+            }
+            
+            
         }
         
         
     }
-    
     
 }
 
