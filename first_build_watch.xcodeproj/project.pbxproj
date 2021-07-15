@@ -23,6 +23,12 @@
 		A74839D5269C1B3D000BC50E /* first_build_watchUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74839D4269C1B3D000BC50E /* first_build_watchUITests.swift */; };
 		A7C8D242269EB25700245B5F /* watch2Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C8D241269EB25700245B5F /* watch2Controller.swift */; };
 		A7C8D244269EB26300245B5F /* watch2View.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C8D243269EB26300245B5F /* watch2View.swift */; };
+		A7C8D249269FC41B00245B5F /* watch3Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C8D248269FC41B00245B5F /* watch3Controller.swift */; };
+		A7C8D24B269FC42700245B5F /* watch3View.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C8D24A269FC42700245B5F /* watch3View.swift */; };
+		A7C8D24D269FC46900245B5F /* caterpillar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C8D24C269FC46900245B5F /* caterpillar.swift */; };
+		A7C8D250269FF92C00245B5F /* watch1Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C8D24F269FF92C00245B5F /* watch1Controller.swift */; };
+		A7C8D252269FF93600245B5F /* watch1View.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C8D251269FF93600245B5F /* watch1View.swift */; };
+		A7C8D254269FF97D00245B5F /* time.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C8D253269FF97D00245B5F /* time.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -106,6 +112,12 @@
 		A74839D6269C1B3D000BC50E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A7C8D241269EB25700245B5F /* watch2Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = watch2Controller.swift; sourceTree = "<group>"; };
 		A7C8D243269EB26300245B5F /* watch2View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = watch2View.swift; sourceTree = "<group>"; };
+		A7C8D248269FC41B00245B5F /* watch3Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = watch3Controller.swift; sourceTree = "<group>"; };
+		A7C8D24A269FC42700245B5F /* watch3View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = watch3View.swift; sourceTree = "<group>"; };
+		A7C8D24C269FC46900245B5F /* caterpillar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = caterpillar.swift; sourceTree = "<group>"; };
+		A7C8D24F269FF92C00245B5F /* watch1Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = watch1Controller.swift; sourceTree = "<group>"; };
+		A7C8D251269FF93600245B5F /* watch1View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = watch1View.swift; sourceTree = "<group>"; };
+		A7C8D253269FF97D00245B5F /* time.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = time.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,6 +181,8 @@
 		A74839AD269C1B3D000BC50E /* first_build_watch WatchKit Extension */ = {
 			isa = PBXGroup;
 			children = (
+				A7C8D24E269FF91E00245B5F /* watch1 */,
+				A7C8D247269FC21200245B5F /* watch3 */,
 				A7C8D240269EB0D000245B5F /* watch2 */,
 				A74839AE269C1B3D000BC50E /* HostingController.swift */,
 				A74839B0269C1B3D000BC50E /* ContentView.swift */,
@@ -180,6 +194,7 @@
 				A74839BF269C1B3D000BC50E /* Info.plist */,
 				A74839C0269C1B3D000BC50E /* PushNotificationPayload.apns */,
 				A74839BC269C1B3D000BC50E /* Preview Content */,
+				A7C8D253269FF97D00245B5F /* time.swift */,
 			);
 			path = "first_build_watch WatchKit Extension";
 			sourceTree = "<group>";
@@ -217,6 +232,25 @@
 				A7C8D243269EB26300245B5F /* watch2View.swift */,
 			);
 			path = watch2;
+			sourceTree = "<group>";
+		};
+		A7C8D247269FC21200245B5F /* watch3 */ = {
+			isa = PBXGroup;
+			children = (
+				A7C8D248269FC41B00245B5F /* watch3Controller.swift */,
+				A7C8D24A269FC42700245B5F /* watch3View.swift */,
+				A7C8D24C269FC46900245B5F /* caterpillar.swift */,
+			);
+			path = watch3;
+			sourceTree = "<group>";
+		};
+		A7C8D24E269FF91E00245B5F /* watch1 */ = {
+			isa = PBXGroup;
+			children = (
+				A7C8D24F269FF92C00245B5F /* watch1Controller.swift */,
+				A7C8D251269FF93600245B5F /* watch1View.swift */,
+			);
+			path = watch1;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -407,13 +441,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				A7C8D242269EB25700245B5F /* watch2Controller.swift in Sources */,
+				A7C8D250269FF92C00245B5F /* watch1Controller.swift in Sources */,
 				A74839B1269C1B3D000BC50E /* ContentView.swift in Sources */,
+				A7C8D252269FF93600245B5F /* watch1View.swift in Sources */,
 				A74839AF269C1B3D000BC50E /* HostingController.swift in Sources */,
 				A74839B5269C1B3D000BC50E /* NotificationController.swift in Sources */,
+				A7C8D24B269FC42700245B5F /* watch3View.swift in Sources */,
 				A74839B3269C1B3D000BC50E /* ExtensionDelegate.swift in Sources */,
 				A74839B7269C1B3D000BC50E /* NotificationView.swift in Sources */,
 				A74839B9269C1B3D000BC50E /* ComplicationController.swift in Sources */,
+				A7C8D249269FC41B00245B5F /* watch3Controller.swift in Sources */,
 				A7C8D244269EB26300245B5F /* watch2View.swift in Sources */,
+				A7C8D254269FF97D00245B5F /* time.swift in Sources */,
+				A7C8D24D269FC46900245B5F /* caterpillar.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
