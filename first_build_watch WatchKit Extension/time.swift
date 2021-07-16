@@ -21,6 +21,10 @@ struct Time {
         return Double(min) * 6 + Double(sec)*0.1 + Double(ms) * 0.1/1000000000
     }
     
+    func absMinAngle() -> Double {
+        return Double(min) * 6
+    }
+    
     func hrAngle() -> Double {
         return Double(hr) * 30 + Double(min) * 0.5 + Double(sec) * 0.5/60 + Double(ms) * 0.5/60000000000
     }

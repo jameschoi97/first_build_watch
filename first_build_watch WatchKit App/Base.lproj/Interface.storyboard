@@ -17,23 +17,12 @@
             </objects>
             <point key="canvasLocation" x="187" y="141"/>
         </scene>
-        <!--Watch2 Controller-->
+        <!--Watch3 Controller-->
         <scene sceneID="YZ5-Ii-9ZQ">
             <objects>
-                <hostingController id="QtF-Gj-Heb" customClass="Watch2Controller" customModule="first_build_watch_WatchKit_Extension">
-                    <connections>
-                        <segue destination="eJz-t7-Yuh" kind="relationship" relationship="nextPage" id="T2d-gY-G2u"/>
-                    </connections>
-                </hostingController>
+                <hostingController id="QtF-Gj-Heb" customClass="Watch3Controller" customModule="first_build_watch_WatchKit_Extension"/>
             </objects>
             <point key="canvasLocation" x="474" y="141"/>
-        </scene>
-        <!--Watch3 Controller-->
-        <scene sceneID="aeq-4w-1za">
-            <objects>
-                <hostingController id="eJz-t7-Yuh" customClass="Watch3Controller" customModule="first_build_watch_WatchKit_Extension"/>
-            </objects>
-            <point key="canvasLocation" x="745" y="141"/>
         </scene>
         <!--Static Notification Interface Controller-->
         <scene sceneID="AEw-b0-oYE">
