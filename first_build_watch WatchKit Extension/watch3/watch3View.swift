@@ -73,9 +73,9 @@ struct Watch3View: View {
                     .zIndex(1)
             }
             
-            Image("leaf")
+            Image("leaf_background")
                 .zIndex(0)
-                .scaleEffect(2.5)
+                .scaleEffect(0.5)
                 .opacity(0.8)
                 .offset(y: 15)
             
