@@ -31,10 +31,10 @@ struct Watch1View: View {
                 .scaleEffect(0.49)
                 .offset(y: 15)
         
-            Image("layer-\(currentTime.sec % 12)")
+            Image("layer-\(currentTime.hr % 12)")
                 .scaleEffect(0.49)
                 .offset(y: 15)
-                .opacity(lightsOn ? 0.85 : 0)
+                .opacity(lightsOn ? 0.75 : 0)
             
             Image("second_hand-\(currentTime.hr % 6)")
                 .scaleEffect(0.49)

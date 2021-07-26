@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import AVFAudio
 
 enum CaterpillarBehavior: Int {
     case drawingMinute = 0
@@ -53,8 +54,6 @@ struct Watch3View: View {
     
     
     
-    
-    
     var body: some View {
         ZStack{
             
@@ -73,10 +72,10 @@ struct Watch3View: View {
                     .zIndex(1)
             }
             
-            Image("leaf_background")
+            Image("leaf_background2")
                 .zIndex(0)
                 .scaleEffect(0.5)
-                .opacity(0.8)
+                .opacity(1)
                 .offset(y: 15)
             
             Image("caterpillar-\(imgIndex)")
@@ -93,6 +92,13 @@ struct Watch3View: View {
                 .rotationEffect(.init(degrees: currentTime.hrAngle()))
                 .zIndex(2)
                 .offset(y: 15)
+            Image("branch_shadow")
+                .rotationEffect(.init(degrees: -90))
+                .offset(y: -130)
+                .scaleEffect(0.22)
+                .rotationEffect(.init(degrees: currentTime.hrAngle()))
+                .zIndex(1.9)
+                .offset(x: 5, y: 20)
             
         }
         .onReceive(receiver, perform: { _ in
@@ -111,6 +117,7 @@ struct Watch3View: View {
             
             
         })
+        
         
         .onReceive(secondReceiver) { _ in
             if (sqrt(pow((xPos-xTarget),2) + pow((yPos-yTarget),2)) <= 3){
@@ -171,6 +178,13 @@ struct Watch3View: View {
                     } else {
                         self.imgIndex = 1
                         if currentBehavior == .drawingMinute {
+                            let audioData = NSDataAsset(name: "leaf_sound")?.data
+                            do {
+                                let audioPlayer = try AVAudioPlayer(data: audioData!)
+                                audioPlayer.play()
+                            } catch {
+                                print("audio error")
+                            }
                             for index in 0..<holeCount {
                                 let xHole = holePosition(minutePosition: xMinute, index: index)
                                 let yHole = holePosition(minutePosition: yMinute, index: index)

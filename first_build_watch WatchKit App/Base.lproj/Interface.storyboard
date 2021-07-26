@@ -20,9 +20,24 @@
         <!--Watch3 Controller-->
         <scene sceneID="YZ5-Ii-9ZQ">
             <objects>
-                <hostingController id="QtF-Gj-Heb" customClass="Watch3Controller" customModule="first_build_watch_WatchKit_Extension"/>
+                <hostingController id="QtF-Gj-Heb" customClass="Watch3Controller" customModule="first_build_watch_WatchKit_Extension">
+                    <connections>
+                        <segue destination="Zmi-kz-bf6" kind="relationship" relationship="nextPage" id="N0h-UG-ZmL"/>
+                    </connections>
+                </hostingController>
             </objects>
             <point key="canvasLocation" x="474" y="141"/>
+        </scene>
+        <!--Extra1 Controller-->
+        <scene sceneID="VRK-ve-v7f">
+            <objects>
+                <hostingController id="Zmi-kz-bf6" customClass="Extra1Controller" customModule="first_build_watch_WatchKit_Extension">
+                    <connections>
+                        <segue destination="Obc-il-cfN" kind="relationship" relationship="nextPage" id="9al-dP-mfz"/>
+                    </connections>
+                </hostingController>
+            </objects>
+            <point key="canvasLocation" x="756" y="141"/>
         </scene>
         <!--Static Notification Interface Controller-->
         <scene sceneID="AEw-b0-oYE">
@@ -46,6 +61,68 @@
                 <controller id="eXb-UN-Cd0" customClass="NotificationController" customModule="first_build_watch_WatchKit_App" customModuleProvider="target"/>
             </objects>
             <point key="canvasLocation" x="488" y="462"/>
+        </scene>
+        <!--Extra6 Controller-->
+        <scene sceneID="EfG-4n-hq7">
+            <objects>
+                <hostingController id="Cp8-hz-BaW" customClass="Extra6Controller" customModule="first_build_watch_WatchKit_Extension">
+                    <connections>
+                        <segue destination="hYg-py-bBj" kind="relationship" relationship="nextPage" id="urG-SW-1Lq"/>
+                    </connections>
+                </hostingController>
+            </objects>
+            <point key="canvasLocation" x="2242" y="141"/>
+        </scene>
+        <!--Extra7 Controller-->
+        <scene sceneID="GP7-wz-9fm">
+            <objects>
+                <hostingController id="hYg-py-bBj" customClass="Extra7Controller" customModule="first_build_watch_WatchKit_Extension"/>
+            </objects>
+            <point key="canvasLocation" x="2558" y="141"/>
+        </scene>
+        <!--Extra2 Controller-->
+        <scene sceneID="XqG-BJ-ENM">
+            <objects>
+                <hostingController id="Obc-il-cfN" customClass="Extra2Controller" customModule="first_build_watch_WatchKit_Extension">
+                    <connections>
+                        <segue destination="xg7-xO-jgk" kind="relationship" relationship="nextPage" id="XHX-Mb-n8V"/>
+                    </connections>
+                </hostingController>
+            </objects>
+            <point key="canvasLocation" x="1042" y="141"/>
+        </scene>
+        <!--Extra5 Controller-->
+        <scene sceneID="cy1-MS-dco">
+            <objects>
+                <hostingController id="5Nw-HV-C11" customClass="Extra5Controller" customModule="first_build_watch_WatchKit_Extension">
+                    <connections>
+                        <segue destination="Cp8-hz-BaW" kind="relationship" relationship="nextPage" id="4zF-YK-tOA"/>
+                    </connections>
+                </hostingController>
+            </objects>
+            <point key="canvasLocation" x="1924" y="141"/>
+        </scene>
+        <!--Extra4 Controller-->
+        <scene sceneID="BAA-f7-Wue">
+            <objects>
+                <hostingController id="ywC-n0-7UB" customClass="Extra4Controller" customModule="first_build_watch_WatchKit_Extension">
+                    <connections>
+                        <segue destination="5Nw-HV-C11" kind="relationship" relationship="nextPage" id="Wsg-Au-iZM"/>
+                    </connections>
+                </hostingController>
+            </objects>
+            <point key="canvasLocation" x="1618" y="141"/>
+        </scene>
+        <!--Extra3 Controller-->
+        <scene sceneID="q9b-zk-Zx9">
+            <objects>
+                <hostingController id="xg7-xO-jgk" customClass="Extra3Controller" customModule="first_build_watch_WatchKit_Extension">
+                    <connections>
+                        <segue destination="ywC-n0-7UB" kind="relationship" relationship="nextPage" id="QqQ-o2-yxE"/>
+                    </connections>
+                </hostingController>
+            </objects>
+            <point key="canvasLocation" x="1323" y="141"/>
         </scene>
     </scenes>
 </document>
