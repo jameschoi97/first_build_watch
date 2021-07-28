@@ -22,7 +22,7 @@
             <objects>
                 <hostingController id="QtF-Gj-Heb" customClass="Watch3Controller" customModule="first_build_watch_WatchKit_Extension">
                     <connections>
-                        <segue destination="Zmi-kz-bf6" kind="relationship" relationship="nextPage" id="N0h-UG-ZmL"/>
+                        <segue destination="Obc-il-cfN" kind="relationship" relationship="nextPage" id="uUX-tV-Mbh"/>
                     </connections>
                 </hostingController>
             </objects>
@@ -33,11 +33,11 @@
             <objects>
                 <hostingController id="Zmi-kz-bf6" customClass="Extra1Controller" customModule="first_build_watch_WatchKit_Extension">
                     <connections>
-                        <segue destination="Obc-il-cfN" kind="relationship" relationship="nextPage" id="9al-dP-mfz"/>
+                        <segue destination="xg7-xO-jgk" kind="relationship" relationship="nextPage" id="90f-Z4-0fb"/>
                     </connections>
                 </hostingController>
             </objects>
-            <point key="canvasLocation" x="756" y="141"/>
+            <point key="canvasLocation" x="1036" y="141"/>
         </scene>
         <!--Static Notification Interface Controller-->
         <scene sceneID="AEw-b0-oYE">
@@ -80,16 +80,16 @@
             </objects>
             <point key="canvasLocation" x="2558" y="141"/>
         </scene>
-        <!--Extra2 Controller-->
+        <!--Watch4 Controller-->
         <scene sceneID="XqG-BJ-ENM">
             <objects>
-                <hostingController id="Obc-il-cfN" customClass="Extra2Controller" customModule="first_build_watch_WatchKit_Extension">
+                <hostingController id="Obc-il-cfN" customClass="Watch4Controller" customModule="first_build_watch_WatchKit_Extension">
                     <connections>
-                        <segue destination="xg7-xO-jgk" kind="relationship" relationship="nextPage" id="XHX-Mb-n8V"/>
+                        <segue destination="Zmi-kz-bf6" kind="relationship" relationship="nextPage" id="GJA-gI-yKu"/>
                     </connections>
                 </hostingController>
             </objects>
-            <point key="canvasLocation" x="1042" y="141"/>
+            <point key="canvasLocation" x="763" y="141"/>
         </scene>
         <!--Extra5 Controller-->
         <scene sceneID="cy1-MS-dco">

@@ -23,8 +23,8 @@
 		A74839D5269C1B3D000BC50E /* first_build_watchUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74839D4269C1B3D000BC50E /* first_build_watchUITests.swift */; };
 		A752EF3226A8F4E0003314A2 /* extra1Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = A752EF3126A8F4E0003314A2 /* extra1Controller.swift */; };
 		A752EF3426A8F4E8003314A2 /* extra1View.swift in Sources */ = {isa = PBXBuildFile; fileRef = A752EF3326A8F4E8003314A2 /* extra1View.swift */; };
-		A752EF3626A8F4F2003314A2 /* extra2Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = A752EF3526A8F4F2003314A2 /* extra2Controller.swift */; };
-		A752EF3826A8F4FC003314A2 /* extra2View.swift in Sources */ = {isa = PBXBuildFile; fileRef = A752EF3726A8F4FC003314A2 /* extra2View.swift */; };
+		A752EF3626A8F4F2003314A2 /* watch4Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = A752EF3526A8F4F2003314A2 /* watch4Controller.swift */; };
+		A752EF3826A8F4FC003314A2 /* watch4View.swift in Sources */ = {isa = PBXBuildFile; fileRef = A752EF3726A8F4FC003314A2 /* watch4View.swift */; };
 		A752EF3A26A8F504003314A2 /* extra3Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = A752EF3926A8F504003314A2 /* extra3Controller.swift */; };
 		A752EF3C26A8F50B003314A2 /* extra3View.swift in Sources */ = {isa = PBXBuildFile; fileRef = A752EF3B26A8F50B003314A2 /* extra3View.swift */; };
 		A752EF3E26A8F515003314A2 /* extra4Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = A752EF3D26A8F515003314A2 /* extra4Controller.swift */; };
@@ -125,8 +125,8 @@
 		A74839D6269C1B3D000BC50E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A752EF3126A8F4E0003314A2 /* extra1Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extra1Controller.swift; sourceTree = "<group>"; };
 		A752EF3326A8F4E8003314A2 /* extra1View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extra1View.swift; sourceTree = "<group>"; };
-		A752EF3526A8F4F2003314A2 /* extra2Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extra2Controller.swift; sourceTree = "<group>"; };
-		A752EF3726A8F4FC003314A2 /* extra2View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extra2View.swift; sourceTree = "<group>"; };
+		A752EF3526A8F4F2003314A2 /* watch4Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = watch4Controller.swift; sourceTree = "<group>"; };
+		A752EF3726A8F4FC003314A2 /* watch4View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = watch4View.swift; sourceTree = "<group>"; };
 		A752EF3926A8F504003314A2 /* extra3Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extra3Controller.swift; sourceTree = "<group>"; };
 		A752EF3B26A8F50B003314A2 /* extra3View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extra3View.swift; sourceTree = "<group>"; };
 		A752EF3D26A8F515003314A2 /* extra4Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extra4Controller.swift; sourceTree = "<group>"; };
@@ -212,7 +212,7 @@
 				A752EF2F26A8F4C4003314A2 /* extra5 */,
 				A752EF2E26A8F4BF003314A2 /* extra4 */,
 				A752EF2D26A8F4BA003314A2 /* extra3 */,
-				A752EF2C26A8F4B5003314A2 /* extra2 */,
+				A752EF2C26A8F4B5003314A2 /* watch4 */,
 				A752EF2B26A8F4AB003314A2 /* extra1 */,
 				A7C8D24E269FF91E00245B5F /* watch1 */,
 				A7C8D247269FC21200245B5F /* watch3 */,
@@ -267,13 +267,13 @@
 			path = extra1;
 			sourceTree = "<group>";
 		};
-		A752EF2C26A8F4B5003314A2 /* extra2 */ = {
+		A752EF2C26A8F4B5003314A2 /* watch4 */ = {
 			isa = PBXGroup;
 			children = (
-				A752EF3526A8F4F2003314A2 /* extra2Controller.swift */,
-				A752EF3726A8F4FC003314A2 /* extra2View.swift */,
+				A752EF3526A8F4F2003314A2 /* watch4Controller.swift */,
+				A752EF3726A8F4FC003314A2 /* watch4View.swift */,
 			);
-			path = extra2;
+			path = watch4;
 			sourceTree = "<group>";
 		};
 		A752EF2D26A8F4BA003314A2 /* extra3 */ = {
@@ -551,12 +551,12 @@
 				A752EF4B26A8F704003314A2 /* extra7Controller.swift in Sources */,
 				A7C8D24B269FC42700245B5F /* watch3View.swift in Sources */,
 				A74839B3269C1B3D000BC50E /* ExtensionDelegate.swift in Sources */,
-				A752EF3826A8F4FC003314A2 /* extra2View.swift in Sources */,
+				A752EF3826A8F4FC003314A2 /* watch4View.swift in Sources */,
 				A752EF3C26A8F50B003314A2 /* extra3View.swift in Sources */,
 				A752EF4626A8F538003314A2 /* extra6Controller.swift in Sources */,
 				A74839B7269C1B3D000BC50E /* NotificationView.swift in Sources */,
 				A74839B9269C1B3D000BC50E /* ComplicationController.swift in Sources */,
-				A752EF3626A8F4F2003314A2 /* extra2Controller.swift in Sources */,
+				A752EF3626A8F4F2003314A2 /* watch4Controller.swift in Sources */,
 				A7C8D249269FC41B00245B5F /* watch3Controller.swift in Sources */,
 				A752EF3426A8F4E8003314A2 /* extra1View.swift in Sources */,
 				A7C8D244269EB26300245B5F /* watch2View.swift in Sources */,
