@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State var currentTime = Time(ms: 0, sec: 0, min: 0, hr: 0)
+    @State var currentTime = Time(ns: 0, sec: 0, min: 0, hr: 0)
     @State var receiver = Timer.publish(every: 0.2, on: .current, in: .default).autoconnect()
     @State var secondReceiver = Timer.publish(every: 0.1, on: .current, in: .default).autoconnect()
     
@@ -125,13 +125,13 @@ struct ContentView: View {
         .onReceive(receiver, perform: { _ in
             let calendar = Calendar.current
             
-            let ms = calendar.component(.nanosecond, from: Date())
+            let ns = calendar.component(.nanosecond, from: Date())
             let sec = calendar.component(.second, from: Date())
             let min = calendar.component(.minute, from: Date())
             let hr = calendar.component(.hour, from: Date())
             
             withAnimation(Animation.linear(duration: 0.01)) {
-                self.currentTime = Time(ms: ms, sec: sec, min: min, hr: hr)
+                self.currentTime = Time(ns: ns, sec: sec, min: min, hr: hr)
             }
         })
         

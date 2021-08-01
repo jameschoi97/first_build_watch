@@ -8,14 +8,24 @@
 import SwiftUI
 
 struct Watch4View: View {
-    @State var currentTime = Time(ms: 0, sec: 0, min: 0, hr: 0)
+    @State var currentTime = Time(ns: 0, sec: 0, min: 0, hr: 0)
     @State var receiver = Timer.publish(every: 0.2, on: .current, in: .default).autoconnect()
     @State var secondReceiver = Timer.publish(every: 0.05, on: .current, in: .default).autoconnect()
     @State var thirdReceiver = Timer.publish(every: 0.2, on: .current, in: .default).autoconnect()
     
-    @State var waveIndex: Int = 1;
+    @State var waveIndex: Int = 0;
     @State var waveGoingDown: Bool = true;
     @State var waveY: CGFloat = -150;
+    
+    
+    @State var crabOpacity: Double = 0
+    @State var crabX: CGFloat = -140
+    
+    @State var turtleOpacity: Double = 0
+    @State var turtleX: CGFloat = -140
+    
+    @State var fishIndex: Int = 0;
+    
     
     var body: some View {
         ZStack{
@@ -38,35 +48,91 @@ struct Watch4View: View {
                 .offset(y: 15)
                 .opacity(0.5)
             
+            Image("crab")
+                .offset(x: crabX, y: 120)
+                .scaleEffect(0.5)
+                .opacity(crabOpacity)
+            
+            Image("turtle")
+                .offset(x: turtleX, y: -70)
+                .scaleEffect(0.5)
+                .opacity(turtleOpacity)
+            
+            Image("fish\(fishIndex)")
+                .offset(y: -40)
+                .scaleEffect(0.5)
+                .rotationEffect(.init(degrees: currentTime.hrAngle()))
+                .zIndex(2.1)
+                .offset(y: 15)
+            
+            
+            
+            
             
         }
         .onReceive(receiver, perform: { _ in
             let calendar = Calendar.current
             
-            let ms = calendar.component(.nanosecond, from: Date())
+            let ns = calendar.component(.nanosecond, from: Date())
             let sec = calendar.component(.second, from: Date())
             let min = calendar.component(.minute, from: Date())
             let hr = calendar.component(.hour, from: Date())
             
-            self.currentTime = Time(ms: ms, sec: sec, min: min, hr: hr)
+            self.currentTime = Time(ns: ns, sec: sec, min: min, hr: hr)
+            
+            fishIndex = currentTime.hr % 12
             
             
         })
         .onReceive(thirdReceiver, perform: { _ in
-            waveIndex = (waveIndex + 1) % 4 + 1
+            waveIndex = (waveIndex + 1) % 4
+        })
+        
+        .onReceive(secondReceiver, perform: { _ in
+            let secondInNano = currentTime.secondInNano();
+            if (secondInNano < 5000000000) {
+                waveY = -200 + 140.0/5000000000*CGFloat(secondInNano)
+            } else if (secondInNano < 10000000000) {
+                waveY = -60
+            } else if (secondInNano < 15000000000) {
+                waveY = -60 - 140.0/5000000000*CGFloat(secondInNano-10000000000)
+            } else {
+                waveY = -200
+            }
+            
+            
+            if secondInNano < 2500000000 || secondInNano > 12500000000 {
+                crabOpacity = 0
+            } else {
+                crabOpacity = 1
+            }
+            
+            if (secondInNano < 2500000000) {
+                crabX = -140
+            } else if (secondInNano < 12500000000) {
+                crabX = -140 + 280.0/10000000000*CGFloat(secondInNano-2500000000)
+            } else {
+                crabX = 140
+            }
+            
+            if secondInNano < 15000000000 {
+                turtleOpacity = 0
+            } else {
+                turtleOpacity    = 1
+            }
+            
+            if (secondInNano < 15000000000) {
+                turtleX = -140
+            } else {
+                turtleX = -140 + 280.0/45000000000*CGFloat(secondInNano-15000000000)
+            }
+            
+            
             
             
         })
         
-        .onReceive(secondReceiver, perform: { _ in
-            if waveY >= 0 {
-                waveGoingDown = false
-            }
-            if waveY < -200 {
-                waveGoingDown = true
-            }
-            waveY += waveGoingDown ? 5 : -5
-        })
+        
         
     }
     

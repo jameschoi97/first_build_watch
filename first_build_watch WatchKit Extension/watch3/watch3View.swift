@@ -15,7 +15,7 @@ enum CaterpillarBehavior: Int {
 }
 
 struct Watch3View: View {
-    @State var currentTime = Time(ms: 0, sec: 0, min: 0, hr: 0)
+    @State var currentTime = Time(ns: 0, sec: 0, min: 0, hr: 0)
     @State var receiver = Timer.publish(every: 0.2, on: .current, in: .default).autoconnect()
     @State var secondReceiver = Timer.publish(every: 0.3, on: .current, in: .default).autoconnect()
     @State var thirdReceiver = Timer.publish(every: 0.05, on: .current, in: .default).autoconnect()
@@ -110,7 +110,7 @@ struct Watch3View: View {
             let hr = calendar.component(.hour, from: Date())
             
             
-                self.currentTime = Time(ms: ms, sec: sec, min: min, hr: hr)
+                self.currentTime = Time(ns: ms, sec: sec, min: min, hr: hr)
             
             xMinute = CGFloat(90 * cos((currentTime.absMinAngle()-90) * Double.pi / 180))
             yMinute = CGFloat(90 * sin((currentTime.absMinAngle()-90) * Double.pi / 180))
@@ -178,13 +178,6 @@ struct Watch3View: View {
                     } else {
                         self.imgIndex = 1
                         if currentBehavior == .drawingMinute {
-                            let audioData = NSDataAsset(name: "leaf_sound")?.data
-                            do {
-                                let audioPlayer = try AVAudioPlayer(data: audioData!)
-                                audioPlayer.play()
-                            } catch {
-                                print("audio error")
-                            }
                             for index in 0..<holeCount {
                                 let xHole = holePosition(minutePosition: xMinute, index: index)
                                 let yHole = holePosition(minutePosition: yMinute, index: index)

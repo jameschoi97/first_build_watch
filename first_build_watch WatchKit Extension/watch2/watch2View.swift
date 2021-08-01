@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct Watch2View: View {
-    @State var currentTime = Time(ms: 0, sec: 0, min: 0, hr: 0)
+    @State var currentTime = Time(ns: 0, sec: 0, min: 0, hr: 0)
     @State var receiver = Timer.publish(every: 0.2, on: .current, in: .default).autoconnect()
     @State var secondReceiver = Timer.publish(every: 0.1, on: .current, in: .default).autoconnect()
     
@@ -90,7 +90,7 @@ struct Watch2View: View {
             let hr = calendar.component(.hour, from: Date())
             
             withAnimation(Animation.linear(duration: 0.01)) {
-                self.currentTime = Time(ms: ms, sec: sec, min: min, hr: hr)
+                self.currentTime = Time(ns: ms, sec: sec, min: min, hr: hr)
             }
         })
         
