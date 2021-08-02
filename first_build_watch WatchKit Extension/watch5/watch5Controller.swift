@@ -9,9 +9,9 @@ import WatchKit
 import Foundation
 import SwiftUI
 
-class Extra4Controller: WKHostingController<Extra4View> {
+class Watch5Controller: WKHostingController<Watch5View> {
     
-    override var body: Extra4View {
-        return Extra4View()
+    override var body: Watch5View {
+        return Watch5View()
     }
 }
