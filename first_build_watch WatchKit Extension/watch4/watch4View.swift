@@ -10,13 +10,14 @@ import SwiftUI
 struct Watch4View: View {
     @State var currentTime = Time(ns: 0, sec: 0, min: 0, hr: 0)
     @State var receiver = Timer.publish(every: 0.2, on: .current, in: .default).autoconnect()
-    @State var secondReceiver = Timer.publish(every: 0.05, on: .current, in: .default).autoconnect()
+    @State var secondReceiver = Timer.publish(every: 0.02, on: .current, in: .default).autoconnect()
     @State var thirdReceiver = Timer.publish(every: 0.4, on: .current, in: .default).autoconnect()
     
     @State var waveIndex: Int = 0;
     @State var waveGoingDown: Bool = true;
     @State var waveX: CGFloat = -100;
     @State var waveY: CGFloat = -250;
+    @State var shadowOpacity: Double = 0;
     
     
     @State var crabOpacity: Double = 0
@@ -26,6 +27,7 @@ struct Watch4View: View {
     @State var turtleX: CGFloat = -140
     
     @State var fishIndex: Int = 0;
+    @State var flapIndex: Int = 0;
     
     @State var stepOpacity: Double = 0
     @State var stepOpacity2: Double = 0
@@ -42,10 +44,17 @@ struct Watch4View: View {
                 .scaleEffect(0.50)
                 .offset(y: 15)
             
-            Image("wave3")
-                .scaleEffect(0.70)
-                .offset(x: waveX, y: waveY)
-                .zIndex(5)
+            ZStack{
+                Image("wave")
+                    .scaleEffect(1.2)
+                    .offset(x: waveX, y: waveY)
+                    .zIndex(2)
+                
+                Image("wave_shadow")
+                    .scaleEffect(0.5)
+                    .opacity(shadowOpacity)
+            }
+            .zIndex(5)
             
             Image("watch4_minute")
                 .offset(y: -110)
@@ -67,7 +76,7 @@ struct Watch4View: View {
                 .opacity(turtleOpacity)
                 .zIndex(6)
             
-            Image("fish\(fishIndex)")
+            Image("fish-\(fishIndex)-\(flapIndex)")
                 .offset(y: -40)
                 .scaleEffect(0.5)
                 .rotationEffect(.init(degrees: currentTime.hrAngle()))
@@ -200,6 +209,16 @@ struct Watch4View: View {
                 stepOpacity2 = 0
             }
             
+            if (secondInNano < 10000000000) {
+                shadowOpacity = 0
+            } else if secondInNano < 17000000000 {
+                shadowOpacity = 1
+            } else if secondInNano < 22000000000 {
+                shadowOpacity = 1 - Double(secondInNano - 17000000000)/5000000000
+            } else {
+                shadowOpacity = 0
+            }
+            
             
             
             
@@ -207,6 +226,7 @@ struct Watch4View: View {
         .onReceive(thirdReceiver, perform: { _ in
             crabIndex = (crabIndex + 1) % 2
             turtleIndex = (turtleIndex + 1) % 2
+            flapIndex = (flapIndex + 1) % 2
         })
         
         

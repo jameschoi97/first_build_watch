@@ -26,6 +26,16 @@ struct Watch5View: View {
     @State var seagullY: CGFloat = -50
     @State var seagullD: Double = 0
     
+    @State var tubeX: CGFloat = -150
+    @State var tubeY: CGFloat = -150
+    @State var tubeD: Double = 45
+    
+    @State var ballX: CGFloat = 0
+    @State var ballY: CGFloat = 0
+    @State var targetX: CGFloat = 100
+    @State var targetY: CGFloat = 100
+    @State var ballD: Double = 0
+    
     var body: some View {
         ZStack{
             
@@ -50,18 +60,26 @@ struct Watch5View: View {
                     .offset(x: surferX)
             }
             .offset(x: -5, y:-50)
-            .rotationEffect(.init(degrees: currentTime.secAngle()))
+            .rotationEffect(.init(degrees: currentTime.minAngle()))
             .offset(y: 20)
             
             Image("person")
-                .scaleEffect(0.2)
+                .scaleEffect(0.5)
                 .offset(x: personX, y: personY)
             
             Image("seagull")
                 .scaleEffect(0.3)
-                .rotationEffect(.init(degrees: seagullD))
+                .rotationEffect(.init(degrees: 90+seagullD))
                 .offset(x:seagullX, y: seagullY)
                 
+            Image("tube")
+                .scaleEffect(0.5)
+                .rotationEffect(.init(degrees: 90+tubeD))
+                .offset(x:tubeX, y: tubeY + 15)
+            
+            Image("ball")
+                .scaleEffect(0.5)
+                .offset(x: ballX, y: ballY)
             
             
             
@@ -93,6 +111,8 @@ struct Watch5View: View {
                 surferX = 15 - 30/1000000000*CGFloat(twoSecondRemainder-1000000000)
             }
             
+            
+            
             let thirtySecondRemainder = secondInNano % 30000000000
             
             if (thirtySecondRemainder < 15000000000) {
@@ -109,6 +129,52 @@ struct Watch5View: View {
                 personY = 100 - 40/5000000000*CGFloat(tenSecondRemainder-5000000000)
             }
             
+            if distance(seagullX, seagullY) > 150 {
+                seagullX = seagullX * 0.8
+                seagullY = seagullY * 0.8
+                seagullD = Double.random(in: 0 ..< 360)
+            }
+            
+            self.seagullX += CGFloat(2 * cos(seagullD * Double.pi / 180))
+            self.seagullY += CGFloat(2 * sin(seagullD * Double.pi / 180))
+            
+            if thirtySecondRemainder < 5000000000 {
+                tubeX = -150
+                tubeY = -150
+                tubeD = 45
+            } else if thirtySecondRemainder < 12000000000 {
+                tubeX = -150 + 110/7000000000*CGFloat(thirtySecondRemainder-5000000000)
+                tubeY = -150 + 110/7000000000*CGFloat(thirtySecondRemainder-5000000000)
+                tubeD = 45
+            } else if thirtySecondRemainder < 15000000000 {
+                tubeX = -40
+                tubeY = -40
+                tubeD = 45 + 180/3000000000*Double(thirtySecondRemainder-12000000000)
+            } else if thirtySecondRemainder < 22000000000 {
+                tubeX = -40-110/7000000000*CGFloat(thirtySecondRemainder-15000000000)
+                tubeY = -40-110/7000000000*CGFloat(thirtySecondRemainder-15000000000)
+                tubeD = 225
+            } else {
+                tubeX = -150
+                tubeY = -150
+                tubeD = 45
+            }
+            
+            
+            self.ballX += CGFloat(0.5 * cos(ballD * Double.pi / 180))
+            self.ballY += CGFloat(0.5 * sin(ballD * Double.pi / 180))
+            
+            
+            if (sqrt(pow((ballX-targetX),2) + pow((ballY-targetY),2)) <= 5){
+                targetX = CGFloat.random(in: -90 ..< 90)
+                targetY = CGFloat.random(in: -75 ..< 105)
+            }
+            let xDiff = targetX - ballX
+            let yDiff = targetY - ballY
+            self.ballD = Double(atan(yDiff/xDiff)) * 180 / Double.pi
+            if (xDiff < 0) {
+                self.ballD += 180
+            }
             
             
         })
@@ -117,10 +183,16 @@ struct Watch5View: View {
             hourIndex = (hourIndex + 1) % 3
             minuteIndex = (minuteIndex + 1) % 4
             surferIndex = (surferIndex + 1) % 2
+            
+            
         })
         
     }
     
+    
+    func distance(_ x:CGFloat, _ y:CGFloat) -> Double {
+        return sqrt(Double(pow(x, 2)) + Double(pow(y, 2)))
+    }
 
     
 }
