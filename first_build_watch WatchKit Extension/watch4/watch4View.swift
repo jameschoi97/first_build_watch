@@ -43,18 +43,20 @@ struct Watch4View: View {
             Image("watch4_background")
                 .scaleEffect(0.50)
                 .offset(y: 15)
-            
-            ZStack{
-                Image("wave")
-                    .scaleEffect(1.2)
-                    .offset(x: waveX, y: waveY)
-                    .zIndex(2)
+                .zIndex(0.1)
+           
+            Image("wave")
+                .scaleEffect(1.2)
+                .offset(x: waveX, y: waveY)
+                .zIndex(5)
+                    
                 
-                Image("wave_shadow")
-                    .scaleEffect(0.5)
-                    .opacity(shadowOpacity)
-            }
-            .zIndex(5)
+            Image("wave_shadow")
+                .scaleEffect(0.5)
+                .opacity(shadowOpacity)
+                .zIndex(0.2)
+            
+            
             
             Image("watch4_minute")
                 .offset(y: -110)
@@ -83,20 +85,22 @@ struct Watch4View: View {
                 .zIndex(2.1)
                 .offset(y: 15)
             
-            Image("clam")
-                .scaleEffect(0.5)
-                .offset(x: 65, y: 45)
+            ZStack {
+                Image("clam")
+                    .scaleEffect(0.5)
+                    .offset(x: 65, y: 45)
+                    
                 
-            
-            Image("clam2")
-                .scaleEffect(0.5)
-                .offset(x: 70, y: 80)
+                Image("clam2")
+                    .scaleEffect(0.5)
+                    .offset(x: 70, y: 80)
+                    
                 
-            
-            Image("starfish")
-                .scaleEffect(0.5)
-                .offset(x: 50, y: 70)
-                
+                Image("starfish")
+                    .scaleEffect(0.5)
+                    .offset(x: 50, y: 70)
+            }
+            .zIndex(2)
             
             ZStack {
                 Image("footstep")
@@ -109,6 +113,7 @@ struct Watch4View: View {
                     .offset(x: -30, y: 70)
                     .opacity(stepOpacity2)
             }
+            .zIndex(2)
             
             
             
