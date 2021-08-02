@@ -105,11 +105,7 @@
         <!--Watch5 Controller-->
         <scene sceneID="BAA-f7-Wue">
             <objects>
-                <hostingController id="ywC-n0-7UB" customClass="Watch5Controller" customModule="first_build_watch_WatchKit_Extension">
-                    <connections>
-                        <segue destination="Zmi-kz-bf6" kind="relationship" relationship="nextPage" id="FA9-2B-Xdg"/>
-                    </connections>
-                </hostingController>
+                <hostingController id="ywC-n0-7UB" customClass="Watch5Controller" customModule="first_build_watch_WatchKit_Extension"/>
             </objects>
             <point key="canvasLocation" x="1055" y="141"/>
         </scene>
