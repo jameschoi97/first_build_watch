@@ -13,26 +13,30 @@ struct Watch4View: View {
     @State var secondReceiver = Timer.publish(every: 0.02, on: .current, in: .default).autoconnect()
     @State var thirdReceiver = Timer.publish(every: 0.4, on: .current, in: .default).autoconnect()
 
+    // Wave var
     @State var waveIndex: Int = 0
     @State var waveGoingDown: Bool = true
     @State var waveX: CGFloat = -100
     @State var waveY: CGFloat = -250
     @State var shadowOpacity: Double = 0
 
+    // Carb and turtle var
     @State var crabOpacity: Double = 0
     @State var crabX: CGFloat = -170
-
+    @State var crabIndex: Int = 0
     @State var turtleOpacity: Double = 0
     @State var turtleX: CGFloat = -140
+    @State var turtleIndex: Int = 0
 
+    // Fish var
     @State var fishIndex: Int = 0
     @State var flapIndex: Int = 0
 
+    // Steps var
     @State var stepOpacity: Double = 0
     @State var stepOpacity2: Double = 0
 
-    @State var crabIndex: Int = 0
-    @State var turtleIndex: Int = 0
+    
 
     var body: some View {
         ZStack {

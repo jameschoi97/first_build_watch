@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+// Watch 2 is not used. However, I left the code here because the algorithm for making the ants move around in a random manner can be applied for the other watches
+
 struct Watch2View: View {
     @State var currentTime = Time(ns: 0, sec: 0, min: 0, hr: 0)
     @State var receiver = Timer.publish(every: 0.2, on: .current, in: .default).autoconnect()

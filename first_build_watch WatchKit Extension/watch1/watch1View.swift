@@ -26,6 +26,7 @@ struct Watch1View: View {
                 .scaleEffect(0.49)
                 .offset(y: 15)
 
+            // Layer of shadow that accentuates the numbers in the background
             Image("layer-\(currentTime.hr % 12)")
                 .scaleEffect(0.49)
                 .offset(y: 15)
@@ -66,7 +67,5 @@ struct Watch1View: View {
                 lightsOn = true
             }
         }
-
     }
-
 }
