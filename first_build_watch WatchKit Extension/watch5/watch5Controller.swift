@@ -10,7 +10,7 @@ import Foundation
 import SwiftUI
 
 class Watch5Controller: WKHostingController<Watch5View> {
-    
+
     override var body: Watch5View {
         return Watch5View()
     }

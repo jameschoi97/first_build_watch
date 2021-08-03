@@ -7,7 +7,8 @@ target 'first_build_watch' do
 
   # Pods for first_build_watch
 
-  pod 'Gifu'
+  pod 'SwiftLint'
+
 
   target 'first_build_watchTests' do
     inherit! :search_paths

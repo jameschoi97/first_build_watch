@@ -8,17 +8,17 @@
 import SwiftUI
 
 struct Extra5View: View {
-    
+
     var body: some View {
-        ZStack{
-            
+        ZStack {
+
             // Main clock
             Image("extra5")
                 .scaleEffect(0.49)
                 .offset(y: 15)
-        
+
         }
-        
+
     }
-    
+
 }

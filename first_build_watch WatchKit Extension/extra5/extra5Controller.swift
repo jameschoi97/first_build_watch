@@ -10,7 +10,7 @@ import Foundation
 import SwiftUI
 
 class Extra5Controller: WKHostingController<Extra5View> {
-    
+
     override var body: Extra5View {
         return Extra5View()
     }

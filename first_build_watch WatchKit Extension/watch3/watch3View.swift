@@ -19,17 +19,15 @@ struct Watch3View: View {
     @State var receiver = Timer.publish(every: 0.2, on: .current, in: .default).autoconnect()
     @State var secondReceiver = Timer.publish(every: 0.3, on: .current, in: .default).autoconnect()
     @State var thirdReceiver = Timer.publish(every: 0.05, on: .current, in: .default).autoconnect()
-    
-    
-    //Minutehand var
+
+    // Minutehand var
     @State var xMinute: CGFloat = 0
     @State var yMinute: CGFloat = 0
     var holeCount: Int = 12
     @State var holeOpacity: [Double] = Array(repeating: 1.0, count: 12)
-    @State var holeSize: [Double] = (0..<12).map{ _ in Double.random(in: 8 ... 15) }
-    
-    
-    //Caterpillar var
+    @State var holeSize: [Double] = (0..<12).map { _ in Double.random(in: 8 ... 15) }
+
+    // Caterpillar var
     @State var imgIndex: Int = 2
     @State var moving: Bool = false
     @State var xPos: CGFloat = 0
@@ -41,50 +39,45 @@ struct Watch3View: View {
     @State var dTarget: Double = 0
     @State var dIncrement: Double = 0
     @State var currentBehavior: CaterpillarBehavior = .freeMoving
-    
-    
+
     var width = WKInterfaceDevice.current().screenBounds.size.width
     var height = WKInterfaceDevice.current().screenBounds.size.height
-    
+
     var leftBound: CGFloat = -90
     var rightBound: CGFloat = 90
     var topBound: CGFloat = -80
     var bottomBound: CGFloat = 110
-    
-    
-    
-    
+
     var body: some View {
-        ZStack{
-            
-            
+        ZStack {
+
             // Main clock
             Rectangle()
                 .fill(Color(.white))
-            
+
             ForEach(0..<holeCount) { index in
                 Circle()
                     .fill(Color(.black))
-                    .frame(width:CGFloat(holeSize[index]), height:CGFloat(holeSize[index]))
+                    .frame(width: CGFloat(holeSize[index]), height: CGFloat(holeSize[index]))
                     .offset(x: holePosition(minutePosition: xMinute, index: index), y: holePosition(minutePosition: yMinute, index: index))
-                    .offset(y:15)
+                    .offset(y: 15)
                     .opacity(holeOpacity[index])
                     .zIndex(1)
             }
-            
+
             Image("leaf_background2")
                 .zIndex(0)
                 .scaleEffect(0.5)
                 .opacity(1)
                 .offset(y: 15)
-            
+
             Image("caterpillar-\(imgIndex)")
                 .offset(y: 30)
                 .scaleEffect(0.6)
                 .rotationEffect(.init(degrees: 90 + direction))
                 .offset(x: xPos, y: yPos)
                 .zIndex(3)
-            
+
             Image("branch")
                 .rotationEffect(.init(degrees: -90))
                 .offset(y: -130)
@@ -99,45 +92,42 @@ struct Watch3View: View {
                 .rotationEffect(.init(degrees: currentTime.hrAngle()))
                 .zIndex(1.9)
                 .offset(x: 5, y: 20)
-            
+
         }
         .onReceive(receiver, perform: { _ in
             let calendar = Calendar.current
-            
-            let ms = calendar.component(.nanosecond, from: Date())
+
+            let ns = calendar.component(.nanosecond, from: Date())
             let sec = calendar.component(.second, from: Date())
             let min = calendar.component(.minute, from: Date())
             let hr = calendar.component(.hour, from: Date())
-            
-            
-                self.currentTime = Time(ns: ms, sec: sec, min: min, hr: hr)
-            
+
+                self.currentTime = Time(ns: ns, sec: sec, min: min, hr: hr)
+
             xMinute = CGFloat(90 * cos((currentTime.absMinAngle()-90) * Double.pi / 180))
             yMinute = CGFloat(90 * sin((currentTime.absMinAngle()-90) * Double.pi / 180))
-            
-            
+
         })
-        
-        
+
         .onReceive(secondReceiver) { _ in
-            if (sqrt(pow((xPos-xTarget),2) + pow((yPos-yTarget),2)) <= 3){
-                if (currentBehavior == .waiting) {
+            if sqrt(pow((xPos-xTarget), 2) + pow((yPos-yTarget), 2)) <= 3 {
+                if currentBehavior == .waiting {
                     if currentTime.sec <= 40 {
                         currentBehavior = .drawingMinute
                         xMinute = CGFloat(90 * cos((currentTime.absMinAngle()-90) * Double.pi / 180))
                         yMinute = CGFloat(90 * sin((currentTime.absMinAngle()-90) * Double.pi / 180))
-                        holeSize = (0..<12).map{ _ in Double.random(in: 8 ... 15) }
+                        holeSize = (0..<12).map { _ in Double.random(in: 8 ... 15) }
                         xTarget = xMinute
                         yTarget = yMinute + 15
                     }
-                } else if (currentBehavior == .drawingMinute) {
+                } else if currentBehavior == .drawingMinute {
                     currentBehavior = .freeMoving
                     xTarget = CGFloat.random(in: leftBound ..< rightBound)
                     yTarget = CGFloat.random(in: topBound ..< bottomBound)
                 } else {
-                    if (xTarget == 0 && yTarget == 15) {
+                    if xTarget == 0 && yTarget == 15 {
                         currentBehavior = .waiting
-                    } else if holeOpacity[0] == 0 || currentTime.sec > 40{
+                    } else if holeOpacity[0] == 0 || currentTime.sec > 40 {
                         xTarget = 0
                         yTarget = 15
                     } else {
@@ -145,35 +135,32 @@ struct Watch3View: View {
                         yTarget = CGFloat.random(in: topBound ..< bottomBound)
                     }
                 }
-                let distance = sqrt(pow((xPos-xTarget),2) + pow((yPos-yTarget),2))
+                let distance = sqrt(pow((xPos-xTarget), 2) + pow((yPos-yTarget), 2))
                 let steps: Int = Int(distance) / 15 + 1
                 stepSize = Double(distance) / Double(steps)
-                
-                
-                
+
             }
-            if sqrt(pow((xPos-xTarget),2) + pow((yPos-yTarget),2)) > 3{
+            if sqrt(pow((xPos-xTarget), 2) + pow((yPos-yTarget), 2)) > 3 {
                 let xDiff = xTarget - xPos
                 let yDiff = yTarget - yPos
                 self.dTarget = Double(atan(yDiff/xDiff)) * 180 / Double.pi
-                if (xDiff < 0) {
+                if xDiff < 0 {
                     self.dTarget += 180
                 }}
             let dDiff = dTarget == direction ? 0 : (dTarget - direction).truncatingRemainder(dividingBy: 360)
-            
-            
-            if (abs(dDiff) < 3) {
+
+            if abs(dDiff) < 3 {
                 dIncrement = 0
                 if !moving {
                     imgIndex = 1
                 }
                 if currentBehavior != .waiting {
-                    if (!moving){
+                    if !moving {
                         moving = true
                         self.imgIndex = 2
-                    } else if (imgIndex == 2) {
+                    } else if imgIndex == 2 {
                         self.imgIndex = 3
-                    } else if (imgIndex == 3) {
+                    } else if imgIndex == 3 {
                         self.imgIndex = 4
                     } else {
                         self.imgIndex = 1
@@ -181,7 +168,7 @@ struct Watch3View: View {
                             for index in 0..<holeCount {
                                 let xHole = holePosition(minutePosition: xMinute, index: index)
                                 let yHole = holePosition(minutePosition: yMinute, index: index)
-                                if (sqrt(pow((xPos-xHole),2) + pow((yPos-yHole),2)) <= 20) {
+                                if sqrt(pow((xPos-xHole), 2) + pow((yPos-yHole), 2)) <= 20 {
                                     holeOpacity[index] = 1
                                 }
                             }
@@ -192,7 +179,7 @@ struct Watch3View: View {
                             for index in 0..<holeCount {
                                 let xHole = holePosition(minutePosition: xMinute, index: index)
                                 let yHole = holePosition(minutePosition: yMinute, index: index)
-                                if (sqrt(pow((xPos-xHole),2) + pow((yPos-yHole),2)) <= 20) {
+                                if sqrt(pow((xPos-xHole), 2) + pow((yPos-yHole), 2)) <= 20 {
                                     holeOpacity[index] = 1
                                 }
                             }
@@ -204,10 +191,10 @@ struct Watch3View: View {
         }
         .onReceive(thirdReceiver) { _ in
             var dDiff = (dTarget - direction).truncatingRemainder(dividingBy: 360)
-            if (dDiff > 180){
+            if dDiff > 180 {
                 dDiff = dDiff - 360
             }
-            if (dTarget != direction) {
+            if dTarget != direction {
                 let turns: Int = Int(abs(dDiff)) / 5 + 1
                 dIncrement = dDiff / Double(turns)
                 direction = (direction + dIncrement).truncatingRemainder(dividingBy: 360)
@@ -217,7 +204,7 @@ struct Watch3View: View {
                     imgIndex = 6
                 }
             }
-            if (currentTime.sec > 58) {
+            if currentTime.sec > 58 {
                 for index in 0..<holeCount {
                     holeOpacity[index] = holeOpacity[index] - 0.1
                 }
@@ -225,9 +212,9 @@ struct Watch3View: View {
         }
 
     }
-    
+
     func holePosition(minutePosition: CGFloat, index: Int) -> CGFloat {
         return minutePosition / CGFloat(holeCount) * CGFloat(index)
     }
-    
+
 }

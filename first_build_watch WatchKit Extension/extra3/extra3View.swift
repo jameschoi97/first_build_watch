@@ -8,17 +8,17 @@
 import SwiftUI
 
 struct Extra3View: View {
-    
+
     var body: some View {
-        ZStack{
-            
+        ZStack {
+
             // Main clock
             Image("extra3")
                 .scaleEffect(0.49)
                 .offset(y: 15)
-        
+
         }
-        
+
     }
-    
+
 }
